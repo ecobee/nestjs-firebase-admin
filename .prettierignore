@@ -1,0 +1,5 @@
+package.json
+package-lock.json
+.circleci/config.yml
+k8s/*
+gen/*

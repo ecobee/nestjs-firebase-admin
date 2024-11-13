@@ -1,70 +1,79 @@
-import { Injectable } from '@nestjs/common';
-import * as admin from 'firebase-admin';
+import { Injectable } from '@nestjs/common'
+import * as admin from 'firebase-admin'
 
 @Injectable()
 export class FirebaseFirestoreService implements FirebaseFirestore.Firestore {
-  constructor(public readonly app: admin.app.App) {}
+	constructor(public readonly app: admin.app.App) {}
 
-  get firestore() {
-    if (!this.app) {
-      throw new Error('Firebase instance is undefined.');
-    }
-    return admin.firestore(this.app);
-  }
+	get databaseId(): string {
+		return this.app.database.toString()
+	}
 
-  settings(settings: FirebaseFirestore.Settings): void {
-    return this.firestore.settings(settings);
-  }
+	get firestore() {
+		if (!this.app) {
+			throw new Error('Firebase instance is undefined.')
+		}
+		return admin.firestore(this.app)
+	}
 
-  collection(collectionPath: string): FirebaseFirestore.CollectionReference {
-    return this.firestore.collection(collectionPath);
-  }
+	settings(settings: FirebaseFirestore.Settings): void {
+		return this.firestore.settings(settings)
+	}
 
-  doc(documentPath: string): FirebaseFirestore.DocumentReference {
-    return this.firestore.doc(documentPath);
-  }
+	collection(collectionPath: string): FirebaseFirestore.CollectionReference {
+		return this.firestore.collection(collectionPath)
+	}
 
-  collectionGroup(collectionId: string): FirebaseFirestore.CollectionGroup {
-    return this.firestore.collectionGroup(collectionId);
-  }
+	doc(documentPath: string): FirebaseFirestore.DocumentReference {
+		return this.firestore.doc(documentPath)
+	}
 
-  getAll(
-    ...documentRefsOrReadOptions: (FirebaseFirestore.DocumentReference | FirebaseFirestore.ReadOptions)[]
-  ): Promise<FirebaseFirestore.DocumentSnapshot[]> {
-    return this.firestore.getAll(...documentRefsOrReadOptions);
-  }
+	collectionGroup(collectionId: string): FirebaseFirestore.CollectionGroup {
+		return this.firestore.collectionGroup(collectionId)
+	}
 
-  terminate(): Promise<void> {
-    return this.firestore.terminate();
-  }
+	getAll(
+		...documentRefsOrReadOptions: (
+			| FirebaseFirestore.DocumentReference
+			| FirebaseFirestore.ReadOptions
+		)[]
+	): Promise<FirebaseFirestore.DocumentSnapshot[]> {
+		return this.firestore.getAll(...documentRefsOrReadOptions)
+	}
 
-  listCollections(): Promise<FirebaseFirestore.CollectionReference[]> {
-    return this.firestore.listCollections();
-  }
+	terminate(): Promise<void> {
+		return this.firestore.terminate()
+	}
 
-  runTransaction<T>(
-    updateFunction: (transaction: FirebaseFirestore.Transaction) => Promise<T>,
-    transactionOptions?: { maxAttempts?: number },
-  ): Promise<T> {
-    return this.firestore.runTransaction(updateFunction, transactionOptions);
-  }
+	listCollections(): Promise<FirebaseFirestore.CollectionReference[]> {
+		return this.firestore.listCollections()
+	}
 
-  batch(): FirebaseFirestore.WriteBatch {
-    return this.firestore.batch();
-  }
+	runTransaction<T>(
+		updateFunction: (transaction: FirebaseFirestore.Transaction) => Promise<T>,
+		transactionOptions?: { maxAttempts?: number },
+	): Promise<T> {
+		return this.firestore.runTransaction(updateFunction, transactionOptions)
+	}
 
-  bulkWriter(options?: FirebaseFirestore.BulkWriterOptions): FirebaseFirestore.BulkWriter {
-    return this.firestore.bulkWriter(options);
-  }
+	batch(): FirebaseFirestore.WriteBatch {
+		return this.firestore.batch()
+	}
 
-  bundle(bundleId?: string): FirebaseFirestore.BundleBuilder {
-    return this.firestore.bundle(bundleId);
-  }
+	bulkWriter(options?: FirebaseFirestore.BulkWriterOptions): FirebaseFirestore.BulkWriter {
+		return this.firestore.bulkWriter(options)
+	}
 
-  recursiveDelete(
-    ref: FirebaseFirestore.CollectionReference<unknown> | FirebaseFirestore.DocumentReference<unknown>,
-    bulkWriter?: FirebaseFirestore.BulkWriter,
-  ): Promise<void> {
-    return this.firestore.recursiveDelete(ref, bulkWriter);
-  }
+	bundle(bundleId?: string): FirebaseFirestore.BundleBuilder {
+		return this.firestore.bundle(bundleId)
+	}
+
+	recursiveDelete(
+		ref:
+			| FirebaseFirestore.CollectionReference<unknown>
+			| FirebaseFirestore.DocumentReference<unknown>,
+		bulkWriter?: FirebaseFirestore.BulkWriter,
+	): Promise<void> {
+		return this.firestore.recursiveDelete(ref, bulkWriter)
+	}
 }

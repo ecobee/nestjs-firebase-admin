@@ -9,24 +9,24 @@ Firebase Admin Module for [Nest.js Framework](https://nestjs.com/)
 ## Installation
 
 ```bash
-$ yarn add @aginix/nestjs-firebase-admin
+$ npm i ecobee/nestjs-firebase-admin
 ```
 
 ### Import module
 
 ```typescript
-import { Module } from '@nestjs/common';
+import { Module } from '@nestjs/common'
 import { FirebaseAdminModule } from '@aginix/nestjs-firebase-admin'
 import * as admin from 'firebase-admin'
 
 @Module({
-  imports: [
-    FirebaseAdminModule.forRootAsync({
-      useFactory: () => ({
-        credential: admin.credential.applicationDefault()
-      })
-    }),
-  ],
+	imports: [
+		FirebaseAdminModule.forRootAsync({
+			useFactory: () => ({
+				credential: admin.credential.applicationDefault(),
+			}),
+		}),
+	],
 })
 export class AppModule {}
 ```
@@ -36,25 +36,25 @@ export class AppModule {}
 ### Inject Authentication Service
 
 ```typescript
-import { Injectable } from '@nestjs/common';
-import { FirebaseAuthenticationService } from '@aginix/nestjs-firebase-admin';
+import { Injectable } from '@nestjs/common'
+import { FirebaseAuthenticationService } from '@aginix/nestjs-firebase-admin'
 
 @Injectable()
 export class AppService {
-  constructor(private firebaseAuth: FirebaseAuthenticationService) {}
+	constructor(private firebaseAuth: FirebaseAuthenticationService) {}
 
-  getUsers() {
-    return this.firebaseAuth.listUsers()
-  }
+	getUsers() {
+		return this.firebaseAuth.listUsers()
+	}
 }
 ```
 
 ## Compatibility Table
 
-| firebase-admin    | NestJS Library |
-| ----------------- |----------------|
-| `9.xx`            | `master`       |
-| `8.xx`            | `1.xx`         |
+| firebase-admin | NestJS Library |
+| -------------- | -------------- |
+| `9.xx`         | `master`       |
+| `8.xx`         | `1.xx`         |
 
 ## License
 
