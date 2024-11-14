@@ -26,6 +26,7 @@ export class FirebaseMessagingService {
     payload: admin.messaging.MessagingPayload,
     options?: admin.messaging.MessagingOptions,
   ): Promise<admin.messaging.MessagingDevicesResponse> {
+    // @TODO: This is deprecated
     return this.messaging.sendToDevice(registrationToken, payload, options);
   }
   sendToDeviceGroup(
@@ -33,6 +34,7 @@ export class FirebaseMessagingService {
     payload: admin.messaging.MessagingPayload,
     options?: admin.messaging.MessagingOptions,
   ): Promise<admin.messaging.MessagingDeviceGroupResponse> {
+    // @TODO: This is deprecated
     return this.messaging.sendToDeviceGroup(notificationKey, payload, options);
   }
   sendToTopic(
