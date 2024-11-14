@@ -1,2 +1,5 @@
 dist/* linguist-generated=true
 dist/* -diff
+
+dist/service/* linguist-generated=true
+dist/service/* -diff
