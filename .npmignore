@@ -1,5 +1,5 @@
 # source
-src
+lib
 index.ts
 package-lock.json
 tslint.json
