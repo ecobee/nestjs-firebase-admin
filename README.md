@@ -4,7 +4,7 @@
 
 Firebase Admin Module for [Nest.js Framework](https://nestjs.com/)
 
-Unlike the original module, this module is made to work with [service-relay](github.com/ecobee/service-relay) and uses `npm` in place of `yarn`.
+Unlike the original module, this module uses `npm` in place of `yarn`.
 
 ## Requirements
 
