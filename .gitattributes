@@ -1,5 +1,7 @@
-dist/* linguist-generated=true
-dist/* -diff
+dist/*.d.ts -diff
+dist/**/*.d.ts -diff
+dist/**/*.js -diff
 
-dist/service/* linguist-generated=true
-dist/service/* -diff
+dist/* linguist-generated=true
+dist/**/*.d.ts linguist-generated=true
+dist/**/*.js linguist-generated=true
