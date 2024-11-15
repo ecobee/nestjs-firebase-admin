@@ -57,7 +57,7 @@ export class AppService {
 
 | firebase-admin | NestJS Library |
 | -------------- | -------------- |
-| `9.xx`         | `main`         |
+| `11.xx`        | `main`         |
 | `8.xx`         | `1.xx`         |
 
 ## Pull requests

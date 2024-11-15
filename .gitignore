@@ -21,4 +21,5 @@ npm-debug.log
 /.nyc_output
 
 # config
+.envrc
 .env

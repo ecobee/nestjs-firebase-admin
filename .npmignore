@@ -1,11 +1,25 @@
 # source
-lib
-index.ts
-package-lock.json
-tslint.json
-tsconfig.json
-.prettierrc
 .DS_Store
+.circleci/
+.editorconfig
+.gitattributes
+.github
+.prettierignore
+.prettierrc
+.prettierrc
+/index.ts
+coverage/
+index.ts
+junit.xml
+lib
+node_modules/
+package-lock.json
+src/
+tsconfig.json
+tsconfig.json
+tslint.json
 
 # config
 .env
+.envrc
+
