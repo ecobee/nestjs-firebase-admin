@@ -1,7 +1,10 @@
 import { Global, Module, DynamicModule, Provider } from '@nestjs/common';
 import * as admin from 'firebase-admin';
+
 import { FirebaseAdminModuleAsyncOptions, FirebaseAdminModuleOptions } from './firebase-admin.interface';
+
 import { FIREBASE_ADMIN_MODULE_OPTIONS } from './firebase-admin.constant';
+
 import {
   FirebaseAuthenticationService,
   FirebaseMessagingService,
@@ -19,7 +22,6 @@ const PROVIDERS = [
   FirebaseFirestoreService,
   FirebaseStorageService,
 ];
-const EXPORTS = [...PROVIDERS];
 
 @Global()
 @Module({})
@@ -32,12 +34,12 @@ export class FirebaseAdminCoreModule {
 
     const app = admin.apps.length === 0 ? admin.initializeApp(options) : admin.apps[0];
 
-    const providers = this.createProviders(app);
+    const providers = app === null ? [] : this.createProviders(app);
 
     return {
       module: FirebaseAdminCoreModule,
       providers: [firebaseAdminModuleOptions, ...providers],
-      exports: [...EXPORTS],
+      exports: [...PROVIDERS],
     };
   }
 
@@ -60,8 +62,9 @@ export class FirebaseAdminCoreModule {
     return {
       module: FirebaseAdminCoreModule,
       imports: options.imports,
+      // @ts-ignore
       providers: [firebaseAdminModuleOptions, ...providers],
-      exports: [...EXPORTS],
+      exports: [...PROVIDERS],
     };
   }
 
@@ -70,6 +73,7 @@ export class FirebaseAdminCoreModule {
       provide: ProviderService,
       useFactory: (options: FirebaseAdminModuleOptions) => {
         const app = admin.apps.length === 0 ? admin.initializeApp(options) : admin.apps[0];
+        // @ts-ignore
         return new ProviderService(app);
       },
       inject: [FIREBASE_ADMIN_MODULE_OPTIONS],

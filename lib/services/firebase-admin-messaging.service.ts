@@ -16,16 +16,17 @@ export class FirebaseMessagingService {
     return this.messaging.send(message, dryRun);
   }
   sendAll(messages: admin.messaging.Message[], dryRun?: boolean): Promise<admin.messaging.BatchResponse> {
-    return this.messaging.sendAll(messages, dryRun);
+    return this.messaging.sendEach(messages, dryRun);
   }
   sendMulticast(message: admin.messaging.MulticastMessage, dryRun?: boolean): Promise<admin.messaging.BatchResponse> {
-    return this.messaging.sendMulticast(message, dryRun);
+    return this.messaging.sendEachForMulticast(message, dryRun);
   }
   sendToDevice(
     registrationToken: string | string[],
     payload: admin.messaging.MessagingPayload,
     options?: admin.messaging.MessagingOptions,
   ): Promise<admin.messaging.MessagingDevicesResponse> {
+    // @TODO: This is deprecated
     return this.messaging.sendToDevice(registrationToken, payload, options);
   }
   sendToDeviceGroup(
@@ -33,6 +34,7 @@ export class FirebaseMessagingService {
     payload: admin.messaging.MessagingPayload,
     options?: admin.messaging.MessagingOptions,
   ): Promise<admin.messaging.MessagingDeviceGroupResponse> {
+    // @TODO: This is deprecated
     return this.messaging.sendToDeviceGroup(notificationKey, payload, options);
   }
   sendToTopic(

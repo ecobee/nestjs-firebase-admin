@@ -1,7 +1,8 @@
 import { DynamicModule, Module } from '@nestjs/common';
 
 import { FirebaseAdminCoreModule } from './firebase-admin-core.module';
-import { FirebaseAdminModuleAsyncOptions, FirebaseAdminModuleOptions } from './firebase-admin.interface';
+
+import type { FirebaseAdminModuleAsyncOptions, FirebaseAdminModuleOptions } from './firebase-admin.interface';
 
 @Module({})
 export class FirebaseAdminModule {

@@ -5,6 +5,10 @@ import * as admin from 'firebase-admin';
 export class FirebaseFirestoreService implements FirebaseFirestore.Firestore {
   constructor(public readonly app: admin.app.App) {}
 
+  get databaseId(): string {
+    return this.app.database.toString();
+  }
+
   get firestore() {
     if (!this.app) {
       throw new Error('Firebase instance is undefined.');

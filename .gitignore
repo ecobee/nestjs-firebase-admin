@@ -4,7 +4,12 @@
 # IDE
 /.idea
 /.awcache
-/.vscode
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 
 # misc
 npm-debug.log
@@ -14,9 +19,6 @@ npm-debug.log
 /test
 /coverage
 /.nyc_output
-
-# source
-dist
 
 # config
 .env
