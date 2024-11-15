@@ -57,12 +57,16 @@ export class AppService {
 
 | firebase-admin | NestJS Library |
 | -------------- | -------------- |
-| `11.xx`        | `main`         |
+| `9.xx`         | `main`         |
 | `8.xx`         | `1.xx`         |
 
 ## Pull requests
 
 When making a pull request for the library ensure the built `/dist` folder is included by running `npm run build`
+
+## Publishing to NPM
+
+To publish to npm, you will need to set the `NPM_TOKEN` env var. This value can be found in your npm config (likely either `~/.config/npm/npmrc` or `~/.npmrc`)
 
 ## License
 
@@ -73,5 +77,7 @@ MIT © [Aginix Technologies Co., Ltd.](https://github.com/Aginix/nestjs-firebase
 ### Custom License for Modifications
 
 The modifications to this code are proprietary and restricted to ecobee. Unauthorized distribution, copying, or modification of these modifications is prohibited.
+
+Pull Requests are welcome.
 
 The original code is licensed under the MIT License, which can be found in the [LICENSE](./LICENCE) file.
