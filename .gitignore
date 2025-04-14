@@ -23,3 +23,5 @@ npm-debug.log
 # config
 .envrc
 .env
+
+ecobee-nestjs-firebase-admin-3.0.1.tgz
