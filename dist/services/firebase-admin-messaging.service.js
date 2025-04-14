@@ -12,6 +12,27 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FirebaseMessagingService = void 0;
 const common_1 = require("@nestjs/common");
 const admin = require("firebase-admin");
+function convertOptionsToAndroid(options) {
+    switch (options === null || options === void 0 ? void 0 : options.priority) {
+        case 'high':
+            return { priority: 'high' };
+        case 'normal':
+            return { priority: 'normal' };
+        default:
+            return undefined;
+    }
+}
+function convertOptionsToApns(options) {
+    if (!(options === null || options === void 0 ? void 0 : options.contentAvailable))
+        return undefined;
+    return {
+        payload: {
+            aps: {
+                'content-available': 1,
+            },
+        },
+    };
+}
 let FirebaseMessagingService = class FirebaseMessagingService {
     constructor(app) {
         this.app = app;
@@ -32,16 +53,49 @@ let FirebaseMessagingService = class FirebaseMessagingService {
         return this.messaging.sendEachForMulticast(message, dryRun);
     }
     sendToDevice(registrationToken, payload, options) {
-        return this.messaging.sendToDevice(registrationToken, payload, options);
+        let tokens = [];
+        if (typeof tokens == 'string') {
+            tokens = [registrationToken];
+        }
+        else {
+            tokens = [...registrationToken];
+        }
+        const message = {
+            tokens,
+            notification: payload.notification,
+            android: convertOptionsToAndroid(options),
+            apns: convertOptionsToApns(options),
+        };
+        return admin.messaging().sendEachForMulticast(message);
     }
     sendToDeviceGroup(notificationKey, payload, options) {
-        return this.messaging.sendToDeviceGroup(notificationKey, payload, options);
+        const message = {
+            token: notificationKey,
+            notification: payload.notification,
+            android: convertOptionsToAndroid(options),
+            apns: convertOptionsToApns(options),
+        };
+        return admin.messaging().send(message);
     }
     sendToTopic(topic, payload, options) {
-        return this.messaging.sendToTopic(topic, payload, options);
+        const message = {
+            topic,
+            notification: payload.notification,
+            data: payload.data,
+            android: convertOptionsToAndroid(options),
+            apns: convertOptionsToApns(options),
+        };
+        return this.messaging.send(message);
     }
     sendToCondition(condition, payload, options) {
-        return this.messaging.sendToCondition(condition, payload, options);
+        const message = {
+            condition,
+            notification: payload.notification,
+            data: payload.data,
+            android: convertOptionsToAndroid(options),
+            apns: convertOptionsToApns(options),
+        };
+        return this.messaging.send(message);
     }
     subscribeToTopic(registrationTokens, topic) {
         return this.messaging.subscribeToTopic(registrationTokens, topic);

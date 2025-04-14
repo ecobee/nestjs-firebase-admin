@@ -1,5 +1,5 @@
 import * as admin from 'firebase-admin';
-import { ModuleMetadata } from '@nestjs/common/interfaces';
+import type { ModuleMetadata } from '@nestjs/common';
 
 export interface FirebaseAdminModuleOptions extends admin.AppOptions {}
 

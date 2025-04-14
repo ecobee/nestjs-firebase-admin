@@ -23,6 +23,7 @@ describe('FirebaseAdminModule', () => {
       await Test.createTestingModule({
         imports: [
           FirebaseAdminModule.forRootAsync({
+            imports: [],
             useFactory: () => ({
               projectId: 'nestjs-firebase-admin-for-test',
             }),
