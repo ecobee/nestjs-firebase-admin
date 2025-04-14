@@ -72,7 +72,7 @@ Initial ecobee release
 
 ### 3.02
 
-Upgrade firebase-admin
+Upgrade firebase-admin to 13.2.0
 
 ## Publishing to NPM
 
