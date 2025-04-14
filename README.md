@@ -64,6 +64,16 @@ export class AppService {
 
 When making a pull request for the library ensure the built `/dist` folder is included by running `npm run build`
 
+## Change Log
+
+### 3.01
+
+Initial ecobee release
+
+### 3.02
+
+Upgrade firebase-admin
+
 ## Publishing to NPM
 
 To publish to npm, you will need to set the `NPM_TOKEN` env var. This value can be found in your npm config (likely either `~/.config/npm/npmrc` or `~/.npmrc`)
